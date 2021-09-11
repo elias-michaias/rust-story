@@ -2037,6 +2037,8 @@ fn item (actor: &mut entity::Entity, action: &mut items::Item, target: &mut enti
 fn main() {
 
     //Passive ability list {{{
+    
+    //Laugh (Charisma-based chance to disable player if health is higher than enemy)
     let laugh = |player: &mut entity::Entity, enemy: &mut entity::Entity, b1: bool, b2: bool, b3: bool, b4: bool| {
         if b1 == false && b2 == false && b3 == false && b4 == false {    
             if player.curhealth < enemy.curhealth {
@@ -2057,25 +2059,30 @@ fn main() {
 
     //Construct player {{{
     let mut player = (
+    
     //Entity
     entity::player(),
+    
     //Spells
     vec![
         spells::dropkick(), 
         spells::bodyslam(), 
         spells::zoom(),
     ],
+
     //Equipped
     [equip::empeq(), equip::empeq(), equip::empeq(), equip::empeq(), equip::empeq(), equip::empeq()]);
     //}}}
     
     //Construct inventory {{{
     let mut inventory = (
+    
     //Items
     vec![
         items::smoothstone(4),
         items::medicinal_leaf(1),
     ],
+    
     //Equipment 
     vec![
         //One-Handed
@@ -2091,17 +2098,21 @@ fn main() {
         equip::blessedring(), 
         equip::irongauntlet(),
     ]);
+    
     //}}}
     
     //Construct enemies {{{
     let mut goblin = (
+    
     //Entity
     entity::goblin(), 
+    
     //Spells
     vec![
         spells::punch(), 
         spells::bash(),
     ], 
+    
     //Unique Function
     laugh.clone()
     );
